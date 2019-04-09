@@ -1,0 +1,7 @@
+<%= form_tag(search_results_path, method: "get") do %>
+      <%= label_tag(:q, "Search for:") %>
+      <%= text_field_tag(:q) %>
+      <%= submit_tag("Search") %>
+    <%end%>
+<h2>Your query for "<%= @query%>" resulted <%= pluralize(@products.size, 'result') %>.</h2>
+<%= render partial: 'products/product', collection: @products %>

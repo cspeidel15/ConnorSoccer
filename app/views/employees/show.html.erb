@@ -1,0 +1,14 @@
+<div class="menu">
+  <h1>Connor Soccer Shop</h1>
+  <nav>
+    <ul>
+      <li><%= link_to 'Home', products_path %></li>
+      <li><%= link_to 'About', "/products/about" %></li>
+      <li><%= link_to 'Cart', carts_path %></li>
+    </ul>
+  </nav>
+</div>
+<%= render_breadcrumbs %>
+<h3><%= @employee.name%></h3>
+<p>Role: <%= @employee.jobtitle %></p>
+<p>Phone: <%= @employee.phone %></p>

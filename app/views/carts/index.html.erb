@@ -1,0 +1,47 @@
+<div class="menu">
+  <h1>Connor Soccer Shop</h1>
+  <nav>
+    <ul>
+      <li><%= link_to 'Home', products_path %></li>
+      <li><%= link_to 'About', "/products/about" %></li>
+      <li><%= link_to 'Cart', carts_path %></li>
+    </ul>
+  </nav>
+</div>
+<h2>Cart</h2>
+<%totalPrice = 0%>
+  <% @carts.each do |cart| %>
+
+   <%= form_for(cart, local: true) do |form| %>
+
+<table>
+  <tbody>
+  <tr>
+    <td><%= image_tag cart.product.image.url, width: 150 %></td>
+    <td><%= cart.product.name %></td>
+    <td>$<%= cart.product.salePrice * cart.quantity %><% totalPrice += cart.product.salePrice * cart.quantity %></td>
+
+      <td><%= form.number_field :quantity, :value => cart.quantity,in: 1.0..200.0, step: 1 %></td>
+      <td><%= form.submit 'Update'%>
+              <%= link_to 'Remove', cart_path(cart),
+              method: :delete,
+              data: { confirm: 'Are you sure?' } %></td>
+
+  </tr>
+  </tbody>
+</table>
+
+   <%end%>
+  <%end%>
+
+<table>
+  <tbody>
+  <tr>
+    <td>---</td>
+    <td>---</td>
+    <td>$<%= totalPrice %></td>
+    <td>---</td>
+
+  </tr>
+  </tbody>
+</table>

@@ -1,0 +1,30 @@
+
+<div class="menu">
+  <h1>Connor Soccer Shop</h1>
+  <nav>
+    <ul>
+      <li><%= link_to 'Home', products_path %></li>
+      <li><%= link_to 'About', "/products/about" %></li>
+      <li><%= link_to 'Cart', carts_path %></li>
+    </ul>
+  </nav>
+</div>
+<body>
+  <%= render_breadcrumbs %>
+</body>
+<p>Connor Soccer Jerseys Incorporated (CSJInc.) is a Soccer Jersey distribution company to provide recreational or premier teams with on field wear. The company insists on 40 Employees. The company has been in operation for 6 years. CSJInc distributes soccer jerseys, shorts, and socks made from major manufacturers and combines them together (Kit) and sells them. CSJInc currently sells their kits through their store. Recreational soccer teams, Premier soccer teams, or any soccer players would be the target demographic.</p>
+<h3>Contacts</h3>
+<table>
+  <tr>
+    <td><b>Contact</b></td>
+    <td><b>Role</b></td>
+    <td><b>Phone</b></td>
+  </tr>
+  <% @employees.each do |employee| %>
+    <tr>
+      <td><%= link_to employee.name, "/employees/#{employee.id}" %></td>
+      <td><%= employee.jobtitle %></td>
+      <td><%= employee.phone %></td>
+    </tr>
+  <%end%>
+</table>

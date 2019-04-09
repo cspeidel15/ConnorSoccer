@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  billingAddress: MyString
+  shippingAddress: MyString
+  creditLimit: 9.99
+
+two:
+  name: MyString
+  billingAddress: MyString
+  shippingAddress: MyString
+  creditLimit: 9.99
