@@ -10,16 +10,23 @@
 </div>
 <h2>Cart</h2>
 <%totalPrice = 0%>
-  <% @carts.each do |cart| %>
+<% @carts.each do |cart| %>
 
-   <%= form_for(cart, local: true) do |form| %>
+<%= form_for(cart, local: true) do |form| %>
 
 <table>
   <tbody>
   <tr>
     <td><%= image_tag cart.product.image.url, width: 150 %></td>
     <td><%= cart.product.name %></td>
-    <td>$<%= cart.product.salePrice * cart.quantity %><% totalPrice += cart.product.salePrice * cart.quantity %></td>
+    <%if cart.product.salePrice == nil %>
+      <td>$<%= cart.product.price * cart.quantity %><% totalPrice += cart.product.price * cart.quantity %></td>
+    <%else%>
+      <td><span style="text-decoration: line-through">$<%= cart.product.price * cart.quantity %></span>
+      <span style="color: red">$<%= cart.product.salePrice * cart.quantity %></span>
+      <% totalPrice += cart.product.salePrice * cart.quantity %></td>
+    <%end%>
+
 
       <td><%= form.number_field :quantity, :value => cart.quantity,in: 1.0..200.0, step: 1 %></td>
       <td><%= form.submit 'Update'%>
@@ -39,8 +46,9 @@
   <tr>
     <td>---</td>
     <td>---</td>
-    <td>$<%= totalPrice %></td>
+    <td>Total: $<%= totalPrice %></td>
     <td>---</td>
+    <td><%= link_to "Order Now", "/charges/new" %></td>
 
   </tr>
   </tbody>

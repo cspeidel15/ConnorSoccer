@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-ActiveAdmin.register Product do
+ActiveAdmin.register Province do
   # See permitted parameters documentation:
   # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
   #
@@ -13,11 +13,6 @@ ActiveAdmin.register Product do
   #   permitted << :other if params[:action] == 'create' && current_user.admin?
   #   permitted
   # end
-  permit_params :name, :description, :salePrice, :size, :quantity, :bin, :color, :image, :category_id, :price
 
-  # form do |f|
-  #   f.inputs do
-  #     f.input :image
-  #   end
-  # end
+  permit_params :name, :tax
 end

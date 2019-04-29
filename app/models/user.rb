@@ -6,6 +6,6 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   has_many :cart_orders
-  belongs_to :customer
   has_many :carts
+  belongs_to :province, optional: true
 end

@@ -5,7 +5,12 @@ class ProductsController < ApplicationController
   add_breadcrumb 'About', '/products/about'
 
   def index
-    @products = Product.order(:bin).page(params[:page])
+    @products = if params[:products] && params[:products][:isSale]
+                  Product.where.not(salePrice: [nil, 0]).order(:bin).page(params[:page])
+                else
+                  Product.order(:bin).page(params[:page])
+                end
+
     @categories = Category.order(:name)
   end
 

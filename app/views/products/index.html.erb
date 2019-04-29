@@ -13,5 +13,21 @@
     </ul>
   </nav>
 </div>
+<%= form_with scope: :products, method: "get", url: products_path, local: :true do |form| %>
+  <%= form.label "Filter Sale" %>
+  <% if params[:products]&&params[:products][:isSale] %>
+      <%= form.check_box :isSale, :onclick => "this.form.submit()", :checked => true, :include_hidden => false %>
+  <%else%>
+      <%= form.check_box :isSale, :onclick => "this.form.submit()", :checked => false, :include_hidden => false %>
+  <%end%>
+  <%# <%= form.check_box :isSale, :onclick => "this.form.submit()", :checked => params[:products][:isSale], :value => true %>
+  <br/>
+  <%= form.label "Filter Brand" %>
+  <%= form.collection_select :category_id, @categories, :id, :name, include_blank: true %>
+
+<%end%>
+<% if params[:products]&&params[:products][:isSale] %>
+  <h3>Kits On Sale</h3>
+<%end%>
 <%= render partial: 'products/product', collection: @products %>
 <%= paginate @products %>
